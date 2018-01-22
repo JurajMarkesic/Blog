@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'PageController@index');
 
 
 
@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('posts', 'PostController')->middleware('auth');
+Route::resource('posts', 'PostsController')->middleware('auth');

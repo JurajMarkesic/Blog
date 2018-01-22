@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -16,7 +17,8 @@ class PostsController extends Controller
     {
         $posts = Post::all();
 
-        return view('welcome')->with('posts', $posts);
+        return response()->json([
+            'posts' => $posts, 'msg' => 'Posts fetched!']);
     }
 
     /**
@@ -26,7 +28,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('create')->with('categories', $categories);
     }
 
     /**
@@ -37,7 +40,19 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->input('title');
+        $body = $request->input('body');
+        $category = $request->input('category');
+
+        $post = new Post();
+
+        $post->title = $title;
+        $post->body = $body;
+        $post->category = $category;
+
+        $post->save();
+
+        return redirect('/posts/' . $post->id);
     }
 
     /**
@@ -48,7 +63,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('post')->with('post', $post);
     }
 
     /**
@@ -59,7 +74,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+
+        return view('edit')->with('post', $post)->with('categories', $categories);
     }
 
     /**
@@ -71,7 +88,18 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $title = $request->input('title');
+        $body = $request->input('body');
+        $category = $request->input('category');
+
+
+        $post->title = $title;
+        $post->body = $body;
+        $post->category = $category;
+
+        $post->update();
+
+        return response("Post updated!" , 200);
     }
 
     /**
@@ -82,6 +110,12 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        try {
+            $post->delete();
+        } catch (\Exception $e) {
+            return response("Post doesn't exist.", 404);
+        }
+
+        return response("Post deleted!", 200);
     }
 }

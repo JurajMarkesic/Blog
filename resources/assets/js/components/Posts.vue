@@ -1,23 +1,30 @@
 <template>
     <div>
-        <post v-for="post in parsedPosts" :post="post" :key="post.id"></post>
+        <tiny-post v-for="post in posts" :post="post" :key="post.id"></tiny-post>
     </div>
 </template>
 
 <script>
     export default {
-        props: [
-          'posts'
-        ],
         data() {
             return {
-
+                posts: []
             }
         },
-        computed: {
-            parsedPosts() {
-                return JSON.parse(this.posts);
-            }
+        created() {
+            this.fetchPosts();
+        },
+        methods: {
+           fetchPosts() {
+               axios.get('/posts')
+                   .then((response) => {
+                       console.log(response.data.msg);
+                       this.posts = response.data.posts;
+                   }).catch((error) => {
+                       console.log(error.data);
+                   }
+               )
+           }
         }
     }
 </script>

@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
-    <posts posts="{{ json_encode($posts) }}"></posts>
+    <post post="{{ $post }}"></post>
 @endsection

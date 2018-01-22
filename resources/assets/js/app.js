@@ -17,6 +17,10 @@ window.Vue = require('vue');
 
 Vue.component('posts', require('./components/Posts.vue'));
 Vue.component('post', require('./components/Post.vue'));
+Vue.component('tiny-post', require('./components/TinyPost.vue'));
+Vue.component('create-post', require('./components/CreatePost.vue'));
+Vue.component('edit-post', require('./components/EditPost.vue'));
+
 
 const store = {
 
