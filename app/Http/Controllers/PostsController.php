@@ -151,4 +151,11 @@ class PostsController extends Controller
         return response()->json(['posts' => $posts]);
     }
 
+    public function recent()
+    {
+        $posts = Post::orderBy('created_at')->take(5)->get();
+
+        return response()->json(['posts' => $posts]);
+    }
+
 }

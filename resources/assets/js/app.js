@@ -21,7 +21,8 @@ Vue.component('tiny-post', require('./components/TinyPost.vue'));
 Vue.component('create-post', require('./components/CreatePost.vue'));
 Vue.component('edit-post', require('./components/EditPost.vue'));
 Vue.component('popular', require('./components/Popular.vue'));
-Vue.component('popular-post', require('./components/PopularPost.vue'));
+Vue.component('side-post', require('./components/SidePost.vue'));
+Vue.component('recent', require('./components/Recent.vue'));
 
 
 const store = {

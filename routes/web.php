@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/posts/popular', 'PostsController@popular');
+Route::get('/posts/recent', 'PostsController@recent');
+
 
 Route::resource('posts', 'PostsController')->middleware('auth');
 
