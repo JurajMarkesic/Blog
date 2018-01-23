@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/posts/popular', 'PostsController@popular');
+
 Route::resource('posts', 'PostsController')->middleware('auth');
 
 Route::get('/tags', 'TagController@index');

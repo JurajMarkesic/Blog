@@ -144,4 +144,11 @@ class PostsController extends Controller
         return response("Post deleted!", 200);
     }
 
+    public function popular()
+    {
+        $posts = Post::orderBy('views')->take(5)->get();
+
+        return response()->json(['posts' => $posts]);
+    }
+
 }
