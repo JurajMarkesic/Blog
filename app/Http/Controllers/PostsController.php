@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PageViewed;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -73,6 +74,8 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
+        event(new PageViewed($post));
+
         return view('post')->with('post', $post);
     }
 
@@ -140,4 +143,5 @@ class PostsController extends Controller
 
         return response("Post deleted!", 200);
     }
+
 }
