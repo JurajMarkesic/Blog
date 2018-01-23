@@ -25,10 +25,20 @@ Route::get('/posts/recent', 'PostsController@recent');
 
 Route::resource('posts', 'PostsController')->middleware('auth');
 
+
 Route::get('/tags', 'TagController@index');
 
 Route::post('/tags/store', 'TagController@store');
 
 Route::post('/tags/attach', 'TagController@attach');
 
-Route::delete('/tags/delete', 'TagController@destroy');
+Route::delete('/tags/{tag}/delete', 'TagController@destroy');
+
+
+Route::get('/categories', 'CategoryController@index');
+
+Route::get('/categories/{category}', 'CategoryController@show');
+
+Route::post('/categories/store', 'CategoryController@store');
+
+Route::delete('/categories/{category}/delete', 'CategoryController@destroy');

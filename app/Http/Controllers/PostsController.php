@@ -146,14 +146,14 @@ class PostsController extends Controller
 
     public function popular()
     {
-        $posts = Post::orderBy('views')->take(5)->get();
+        $posts = Post::orderBy('views', 'desc')->take(5)->get();
 
         return response()->json(['posts' => $posts]);
     }
 
     public function recent()
     {
-        $posts = Post::orderBy('created_at')->take(5)->get();
+        $posts = Post::orderBy('created_at', 'desc')->take(5)->get();
 
         return response()->json(['posts' => $posts]);
     }

@@ -2,5 +2,6 @@
     <popular class="mt-5"></popular>
 
     <recent class="mt-5"></recent>
-    {{--popular,recent posts; Categories--}}
+
+    <categories class="mt-5"></categories>
 </aside>

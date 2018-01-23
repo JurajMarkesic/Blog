@@ -23,6 +23,8 @@ Vue.component('edit-post', require('./components/EditPost.vue'));
 Vue.component('popular', require('./components/Popular.vue'));
 Vue.component('side-post', require('./components/SidePost.vue'));
 Vue.component('recent', require('./components/Recent.vue'));
+Vue.component('categories', require('./components/Categories.vue'));
+Vue.component('category', require('./components/Category.vue'));
 
 
 const store = {

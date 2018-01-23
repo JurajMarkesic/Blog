@@ -41,12 +41,12 @@ class TagController extends Controller
         return response("Tag attached.", 200);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Tag $tag)
     {
-        $name = $request->input('name');
-
-        $tag =\DB::table('tags')->where('name', $name);
-
-        $tag->delete();
+        try {
+            $tag->delete();
+        } catch (\Exception $e) {
+            return response('Tag does not exist.', 404);
+        }
     }
 }
