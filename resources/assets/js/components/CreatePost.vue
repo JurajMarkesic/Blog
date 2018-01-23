@@ -16,7 +16,11 @@
         <select name="tags" id="tags" v-model="tag">
             <option v-for="tg in parsedTags" :value="tg.id">{{tg.name}}</option>
         </select>
-        <p v-for="tagName in tagsSelectedNames">{{ tagName }}</p>
+        <div v-for="tagName in tagsSelectedNames">
+            <br>
+            <span>{{ tagName }}</span>
+            <button class="btn btn-danger" @click.prevent="removeTag(tagName)">Remove</button>
+        </div>
         <button class="btn" @click.prevent="addTag">Add Tag</button>
         <button class="btn" @click.prevent="storePost">Done</button>
     </form>
@@ -41,11 +45,10 @@
         },
         methods: {
             addTag() {
-                this.tagsSelected.push(this.tag);
-
                 let name = this.parsedTags[this.tagIndex].name;
 
                 if(!this.tagsSelectedNames.includes(name)) {
+                    this.tagsSelected.push(this.tag);
                     this.tagsSelectedNames.push(name);
                 }
             },
@@ -61,7 +64,14 @@
                 }).catch((error) => {
                     console.log(error.data);
                 })
+            },
+            removeTag(tagName) {
+                let i = this.tagsSelectedNames.indexOf(tagName);
 
+                if(i != -1) {
+                    this.tagsSelectedNames.splice(i, 1);
+                    this.tagsSelected.splice(i, 1);
+                }
             }
         },
         mounted() {

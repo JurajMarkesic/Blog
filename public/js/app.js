@@ -58578,7 +58578,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58589,6 +58589,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -58631,11 +58635,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         addTag: function addTag() {
-            this.tagsSelected.push(this.tag);
-
             var name = this.parsedTags[this.tagIndex].name;
 
             if (!this.tagsSelectedNames.includes(name)) {
+                this.tagsSelected.push(this.tag);
                 this.tagsSelectedNames.push(name);
             }
         },
@@ -58651,6 +58654,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error.data);
             });
+        },
+        removeTag: function removeTag(tagName) {
+            var i = this.tagsSelectedNames.indexOf(tagName);
+
+            if (i != -1) {
+                this.tagsSelectedNames.splice(i, 1);
+                this.tagsSelected.splice(i, 1);
+            }
         }
     },
     mounted: function mounted() {
@@ -58816,7 +58827,25 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.tagsSelectedNames, function(tagName) {
-        return _c("p", [_vm._v(_vm._s(tagName))])
+        return _c("div", [
+          _c("br"),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(tagName))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.removeTag(tagName)
+                }
+              }
+            },
+            [_vm._v("Remove")]
+          )
+        ])
       }),
       _vm._v(" "),
       _c(
@@ -58946,7 +58975,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58957,6 +58986,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -59055,6 +59088,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (!this.tagsSelectedNames.includes(name)) {
                 this.tagsSelectedNames.push(name);
+            }
+        },
+        removeTag: function removeTag(tagName) {
+            var i = this.tagsSelectedNames.indexOf(tagName);
+
+            if (i != -1) {
+                this.tagsSelectedNames.splice(i, 1);
+                this.tagsSelectedFinal.splice(i, 1);
             }
         }
     }
@@ -59193,7 +59234,24 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.tagsSelectedNames, function(tagName) {
-        return _c("p", [_vm._v(_vm._s(tagName))])
+        return _c("div", [
+          _c("br"),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(tagName))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  _vm.removeTag(tagName)
+                }
+              }
+            },
+            [_vm._v("Remove")]
+          )
+        ])
       }),
       _vm._v(" "),
       _c(

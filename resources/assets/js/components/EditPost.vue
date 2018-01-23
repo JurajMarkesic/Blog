@@ -14,7 +14,11 @@
         <select name="tags" id="tags" v-model="tag">
             <option v-for="tg in parsedTags" :value="tg.id">{{tg.name}}</option>
         </select>
-        <p v-for="tagName in tagsSelectedNames">{{ tagName }}</p>
+        <div v-for="tagName in tagsSelectedNames">
+            <br>
+            <span>{{ tagName }}</span>
+            <button class="btn btn-danger" @click="removeTag(tagName)">Remove</button>
+        </div>
 
         <button class="btn" @click.prevent="addTag">Add Tag</button>
         <button class="btn" @click="editPost">Done</button>
@@ -94,6 +98,14 @@
 
                 if(!this.tagsSelectedNames.includes(name)) {
                     this.tagsSelectedNames.push(name);
+                }
+            },
+            removeTag(tagName) {
+                let i = this.tagsSelectedNames.indexOf(tagName);
+
+                if(i != -1) {
+                    this.tagsSelectedNames.splice(i, 1);
+                    this.tagsSelectedFinal.splice(i, 1);
                 }
             }
         }
