@@ -20,3 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostsController')->middleware('auth');
+
+Route::get('/tags', 'TagController@index');
+
+Route::post('/tags/store', 'TagController@store');
+
+Route::post('/tags/attach', 'TagController@attach');
+
+Route::delete('/tags/delete', 'TagController@destroy');

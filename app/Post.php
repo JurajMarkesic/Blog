@@ -14,4 +14,9 @@ class Post extends Model
     {
         return $this->belongsTo('Category', 'id', 'category');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps()->withPivot('tag_id');
+    }
 }

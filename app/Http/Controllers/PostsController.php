@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -29,7 +30,9 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('create')->with('categories', $categories);
+        $tags = Tag::all();
+
+        return view('create', ['tags' => $tags, 'categories' => $categories]);
     }
 
     /**
@@ -52,7 +55,14 @@ class PostsController extends Controller
 
         $post->save();
 
-        return redirect('/posts/' . $post->id);
+        $tags = $request->input('tags');
+
+
+        foreach($tags as $tag) {
+            $post->tags()->attach($tag);
+        }
+
+        return response()->json(['id' => $post->id]);
     }
 
     /**
@@ -75,8 +85,11 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('edit')->with('post', $post)->with('categories', $categories);
+        $tagsSelected = $post->tags;
+
+        return view('edit', ['post' => $post, 'categories' => $categories, 'tags' => $tags, 'tagsselected' => $tagsSelected]);
     }
 
     /**
@@ -98,6 +111,15 @@ class PostsController extends Controller
         $post->category = $category;
 
         $post->update();
+
+        $tags = $request->input('tags');
+
+        $post->tags()->detach();
+
+        foreach($tags as $tagId) {
+            $tag = Tag::find($tagId);
+            $post->tags()->attach($tag);
+        }
 
         return response("Post updated!" , 200);
     }

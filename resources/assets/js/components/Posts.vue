@@ -8,7 +8,8 @@
     export default {
         data() {
             return {
-                posts: []
+                posts: [],
+                post: ''
             }
         },
         created() {

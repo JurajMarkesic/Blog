@@ -58081,7 +58081,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58135,7 +58135,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            posts: []
+            posts: [],
+            post: ''
         };
     },
     created: function created() {
@@ -58577,7 +58578,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58606,20 +58607,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['categories'],
+    props: ['categories', 'tags'],
     data: function data() {
         return {
             title: '',
             body: '',
             category: '',
+            tag: '',
+            tagsSelected: [],
+            tagsSelectedNames: [],
             csrf: ''
         };
     },
 
-    methods: {},
+    methods: {
+        addTag: function addTag() {
+            this.tagsSelected.push(this.tag);
+
+            var name = this.parsedTags[this.tagIndex].name;
+
+            if (!this.tagsSelectedNames.includes(name)) {
+                this.tagsSelectedNames.push(name);
+            }
+        },
+        storePost: function storePost() {
+            axios.post('/posts', {
+                'title': this.title,
+                'body': this.body,
+                'category': this.category,
+                'tags': this.tagsSelected
+            }).then(function (response) {
+                console.log(response.data);
+                window.location.href = '/posts/' + response.data.id;
+            }).catch(function (error) {
+                console.log(error.data);
+            });
+        }
+    },
     mounted: function mounted() {
         this.csrf = window.Laravel.csrfToken;
     },
@@ -58627,6 +58660,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         parsedCategories: function parsedCategories() {
             return JSON.parse(this.categories);
+        },
+        parsedTags: function parsedTags() {
+            return JSON.parse(this.tags);
+        },
+        tagIndex: function tagIndex() {
+            var _this = this;
+
+            return this.parsedTags.findIndex(function (o) {
+                return o.id === _this.tag;
+            });
         }
     }
 });
@@ -58735,10 +58778,76 @@ var render = function() {
         })
       ),
       _vm._v(" "),
-      _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
-        _vm._v("Done")
-      ])
-    ]
+      _c("label", { attrs: { for: "tags" } }, [_vm._v("Add Tags:")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.tag,
+              expression: "tag"
+            }
+          ],
+          attrs: { name: "tags", id: "tags" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.tag = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        _vm._l(_vm.parsedTags, function(tg) {
+          return _c("option", { domProps: { value: tg.id } }, [
+            _vm._v(_vm._s(tg.name))
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.tagsSelectedNames, function(tagName) {
+        return _c("p", [_vm._v(_vm._s(tagName))])
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.addTag($event)
+            }
+          }
+        },
+        [_vm._v("Add Tag")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.storePost($event)
+            }
+          }
+        },
+        [_vm._v("Done")]
+      )
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -58837,7 +58946,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58864,19 +58973,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['post', 'categories'],
+    props: ['post', 'categories', 'tags', 'tagsselected'],
     data: function data() {
         return {
             title: '',
-            body: ''
+            body: '',
+            tag: '',
+            tagsSelectedNames: [],
+            tagsSelectedFinal: []
         };
     },
     created: function created() {
+        var _this = this;
+
         this.title = this.parsedPost.title;
         this.body = this.parsedPost.body;
         this.category = this.parsedPost.category;
+        this.parsedTagsSelected.forEach(function (element) {
+            _this.tagsSelectedNames.push(element.name);
+            _this.tagsSelectedFinal.push(element.id);
+        });
     },
 
     computed: {
@@ -58888,23 +59014,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         url: function url() {
             return "/posts/" + this.parsedPost.id;
+        },
+        parsedTags: function parsedTags() {
+            return JSON.parse(this.tags);
+        },
+        tagIndex: function tagIndex() {
+            var _this2 = this;
+
+            return this.parsedTags.findIndex(function (o) {
+                return o.id === _this2.tag;
+            });
+        },
+        parsedTagsSelected: function parsedTagsSelected() {
+            return JSON.parse(this.tagsselected);
         }
     },
     methods: {
         editPost: function editPost() {
-            var _this = this;
+            var _this3 = this;
 
             axios.put(this.url, {
                 'title': this.title,
                 'body': this.body,
-                'category': this.category
+                'category': this.category,
+                'tags': this.tagsSelectedFinal
             }).then(function (response) {
                 console.log(response.data);
-                window.location.href = _this.url;
+                window.location.href = _this3.url;
             });
         },
         deletePost: function deletePost() {
             axios.delete(this.url).then(window.location.href = "/");
+        },
+        addTag: function addTag() {
+            if (!this.tagsSelectedFinal.includes(this.tag)) {
+                this.tagsSelectedFinal.push(this.tag);
+            }
+
+            var name = this.parsedTags[this.tagIndex].name;
+
+            if (!this.tagsSelectedNames.includes(name)) {
+                this.tagsSelectedNames.push(name);
+            }
         }
     }
 });
@@ -58917,99 +59068,158 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "title" } }, [_vm._v("Title:")]),
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "title" } }, [_vm._v("Title:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.title,
+              expression: "title"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", name: "title", id: "title" },
+          domProps: { value: _vm.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.title = $event.target.value
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
-      _c("input", {
+      _c("textarea", {
         directives: [
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.title,
-            expression: "title"
+            value: _vm.body,
+            expression: "body"
           }
         ],
-        staticClass: "form-control",
-        attrs: { type: "text", name: "title", id: "title" },
-        domProps: { value: _vm.title },
+        attrs: { name: "body", id: "body", cols: "30", rows: "10" },
+        domProps: { value: _vm.body },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.title = $event.target.value
+            _vm.body = $event.target.value
           }
         }
-      })
-    ]),
-    _vm._v(" "),
-    _c("textarea", {
-      directives: [
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "category" } }, [_vm._v("Category:")]),
+      _vm._v(" "),
+      _c(
+        "select",
         {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.body,
-          expression: "body"
-        }
-      ],
-      attrs: { name: "body", id: "body", cols: "30", rows: "10" },
-      domProps: { value: _vm.body },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.category,
+              expression: "category"
+            }
+          ],
+          attrs: { name: "category", id: "category" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.category = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
           }
-          _vm.body = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("label", { attrs: { for: "category" } }, [_vm._v("Category:")]),
-    _vm._v(" "),
-    _c(
-      "select",
-      {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.category,
-            expression: "category"
+        },
+        _vm._l(_vm.parsedCategories, function(cat) {
+          return _c("option", { domProps: { value: cat.id } }, [
+            _vm._v(_vm._s(cat.title))
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "tags" } }, [_vm._v("Add Tags:")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.tag,
+              expression: "tag"
+            }
+          ],
+          attrs: { name: "tags", id: "tags" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.tag = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
           }
-        ],
-        attrs: { name: "category", id: "category" },
-        on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.category = $event.target.multiple
-              ? $$selectedVal
-              : $$selectedVal[0]
+        },
+        _vm._l(_vm.parsedTags, function(tg) {
+          return _c("option", { domProps: { value: tg.id } }, [
+            _vm._v(_vm._s(tg.name))
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.tagsSelectedNames, function(tagName) {
+        return _c("p", [_vm._v(_vm._s(tagName))])
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.addTag($event)
+            }
           }
-        }
-      },
-      _vm._l(_vm.parsedCategories, function(cat) {
-        return _c("option", { domProps: { value: cat.id } }, [
-          _vm._v(_vm._s(cat.title))
-        ])
-      })
-    ),
-    _vm._v(" "),
-    _c("button", { staticClass: "btn", on: { click: _vm.editPost } }, [
-      _vm._v("Done")
-    ]),
-    _vm._v(" "),
-    _c("button", { staticClass: "btn", on: { click: _vm.deletePost } }, [
-      _vm._v("Delete")
-    ])
-  ])
+        },
+        [_vm._v("Add Tag")]
+      ),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn", on: { click: _vm.editPost } }, [
+        _vm._v("Done")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn", on: { click: _vm.deletePost } }, [
+        _vm._v("Delete")
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
