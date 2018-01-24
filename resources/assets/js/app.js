@@ -28,6 +28,8 @@ Vue.component('side-category', require('./components/SideCategory.vue'));
 Vue.component('categories', require('./components/Categories.vue'));
 Vue.component('category', require('./components/Category.vue'));
 Vue.component('category-posts', require('./components/CategoryPosts.vue'));
+Vue.component('search-results', require('./components/SearchResults.vue'));
+
 
 
 

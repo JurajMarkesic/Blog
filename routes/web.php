@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/search', 'SearchController@search');
+
 Route::get('/posts/popular', 'PostsController@popular');
 Route::get('/posts/recent', 'PostsController@recent');
 
