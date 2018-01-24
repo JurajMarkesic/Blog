@@ -12,10 +12,10 @@
             <ul class="navbar-nav">
                 @include('Partials.search')
                 @if (Auth::guest())
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+                    <li class="nav-item ml-3"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                     <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown ml-3">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}

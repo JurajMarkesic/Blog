@@ -25,7 +25,7 @@ Route::get('/posts/popular', 'PostsController@popular');
 Route::get('/posts/recent', 'PostsController@recent');
 
 
-Route::resource('posts', 'PostsController')->middleware('auth');
+Route::resource('posts', 'PostsController');
 
 
 Route::get('/tags', 'TagController@index');
