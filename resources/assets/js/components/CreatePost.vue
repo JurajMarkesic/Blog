@@ -6,8 +6,9 @@
             <input type="text" class="form-control" id="title" name="title" v-model="title">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="body" v-model="body">
+            <vue-tinymce v-model="body" id="bod"></vue-tinymce>
         </div>
+
         <label for="category">Category:</label>
         <select name="category" id="category" v-model="category">
             <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+
+    import vueTinymce from '../app.js'
 
     export default {
         props: [
@@ -76,6 +79,9 @@
         },
         mounted() {
             this.csrf = window.Laravel.csrfToken;
+            // tinymce.init({
+            //     selector: '#body'
+            // });
         },
         computed: {
             parsedCategories() {
@@ -93,5 +99,7 @@
 </script>
 
 <style>
-
+    #bod {
+        word-break: break-all;
+    }
 </style>

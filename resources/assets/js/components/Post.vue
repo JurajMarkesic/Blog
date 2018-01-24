@@ -2,7 +2,7 @@
     <div>
         <h3>{{ parsedPost.title}}</h3>
         <p class="form-text text-muted">Views: {{ parsedPost.views }}</p>
-        <div>{{ parsedPost.body}}</div>
+        <div v-html="parsedPost.body" id="bod"></div>
         <form :action="url" >
             <button class="btn" type="submit">Edit</button>
         </form>
@@ -29,5 +29,7 @@
 </script>
 
 <style>
-
+    #bod {
+        word-break: break-all;
+    }
 </style>

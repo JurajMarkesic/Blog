@@ -9,6 +9,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import vueTinymce from '../../../node_modules/@deveodk/vue-tinymce';
+import '@deveodk/vue-tinymce/dist/@deveodk/vue-tinymce.css';
+Vue.use(vueTinymce);
+
+export default vueTinymce;
+
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

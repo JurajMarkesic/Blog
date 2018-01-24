@@ -4,7 +4,7 @@
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" class="form-control" v-model="title">
         </div>
-        <textarea name="body" id="body" cols="30" rows="10" v-model="body"></textarea>
+        <vue-tinymce :data="body" v-model="body" id="bod"></vue-tinymce>
         <label for="category">Category:</label>
         <select name="category" id="category" v-model="category">
             <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+    import vueTinymce from '../app.js'
+
     export default {
         props: [
             'post', 'categories', 'tags', 'tagsselected'
@@ -113,5 +115,7 @@
 </script>
 
 <style>
-
+    #bod {
+        word-break: break-all;
+    }
 </style>
