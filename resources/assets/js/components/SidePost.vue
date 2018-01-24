@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span>{{ post.title }}</span>
+        <span><a :href="'/posts/' + post.id">{{ post.title }}</a></span>
         <span class="text-muted">Views: {{ post.views }}</span>
     </div>
 </template>

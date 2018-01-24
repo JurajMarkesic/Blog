@@ -16,9 +16,10 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $posts = $category->posts();
+        $posts = $category->posts()->get();
 
-        return view('categories.category', ['posts' => $posts]);
+
+        return view('Categories.category', ['posts' => $posts]);
     }
 
     public function store(Request $request)

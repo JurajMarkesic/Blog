@@ -3,5 +3,5 @@
 
     <recent class="mt-5"></recent>
 
-    <categories class="mt-5"></categories>
+    <side-categories class="mt-5"></side-categories>
 </aside>

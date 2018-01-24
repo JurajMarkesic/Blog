@@ -1,8 +1,8 @@
 <template>
-<div>
-    <h3>Categories:</h3>
-    <category v-for="category in categories" :category="category" :key="category.id"></category>
-</div>
+    <div>
+        <h3>Categories:</h3>
+        <side-category v-for="category in categories" :category="category" :key="category.id"></side-category>
+    </div>
 </template>
 
 <script>
@@ -19,7 +19,7 @@
                     .then((response) => {
                         this.categories = response.data.categories;
                     }).catch((error) => {
-                    console.log(error.data);
+                        console.log(error.data);
                 })
             }
         },

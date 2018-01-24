@@ -35,7 +35,9 @@ Route::post('/tags/attach', 'TagController@attach');
 Route::delete('/tags/{tag}/delete', 'TagController@destroy');
 
 
-Route::get('/categories', 'CategoryController@index');
+Route::get('/categories', 'PageController@categories');
+
+Route::get('/categories/all', 'CategoryController@index');
 
 Route::get('/categories/{category}', 'CategoryController@show');
 
