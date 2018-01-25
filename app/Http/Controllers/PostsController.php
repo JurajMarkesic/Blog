@@ -63,8 +63,8 @@ class PostsController extends Controller
 
         $tags = $request->input('tags');
 
-
         foreach($tags as $tag) {
+
             $post->tags()->attach($tag);
         }
 

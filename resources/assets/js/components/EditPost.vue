@@ -5,22 +5,17 @@
             <input type="text" name="title" id="title" class="form-control" v-model="title">
         </div>
         <vue-tinymce :data="body" v-model="body" id="bod"></vue-tinymce>
+        <br>
         <label for="category">Category:</label>
         <select name="category" id="category" v-model="category">
             <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
-        </select>
+        </select><br><br>
 
-        <label for="tags">Add Tags:</label>
-        <select name="tags" id="tags" v-model="tag">
-            <option v-for="tg in parsedTags" :value="tg.id">{{tg.name}}</option>
-        </select>
-        <div v-for="tagName in tagsSelectedNames">
-            <br>
-            <span>{{ tagName }}</span>
-            <button class="btn btn-danger" @click="removeTag(tagName)">Remove</button>
-        </div>
+        <label for="tags">Add Tags:</label><br>
+        <v-select label="name" :options="parsedTags" id="tags" v-model="tagsSelected"  multiple>
 
-        <button class="btn" @click.prevent="addTag">Add Tag</button>
+        </v-select>
+        <br>
         <button class="btn" @click="editPost">Done</button>
         <button class="btn" @click="deletePost">Delete</button>
     </div>
@@ -28,6 +23,7 @@
 
 <script>
     import vueTinymce from '../app.js'
+
 
     export default {
         props: [
@@ -38,19 +34,14 @@
               title: '',
               body: '',
               tag: '',
-              tagsSelectedNames: [],
-              tagsSelectedFinal: []
+              tagsSelected: []
           }
         },
         created() {
             this.title = this.parsedPost.title;
             this.body = this.parsedPost.body;
             this.category = this.parsedPost.category;
-            this.parsedTagsSelected.forEach((element) => {
-                this.tagsSelectedNames.push(element.name);
-                this.tagsSelectedFinal.push(element.id);
-            });
-
+            this.tagsSelected = this.parsedTagsSelected;
         },
         computed: {
             parsedPost() {
@@ -65,21 +56,18 @@
             parsedTags() {
                 return JSON.parse(this.tags);
             },
-            tagIndex() {
-                return this.parsedTags.findIndex(o => o.id === this.tag);
-
-            },
             parsedTagsSelected() {
                 return JSON.parse(this.tagsselected);
             }
         },
         methods: {
             editPost() {
+                let tagIds = this.tagsSelected.map(a => a.id);
                 axios.put(this.url, {
                     'title': this.title,
                     'body': this.body,
                     'category': this.category,
-                    'tags': this.tagsSelectedFinal
+                    'tags': tagIds
                 }).then((response) => {
                     console.log(response.data);
                     window.location.href = this.url;
@@ -91,24 +79,10 @@
                         window.location.href = "/"
                     );
             },
-            addTag() {
-                if(!this.tagsSelectedFinal.includes(this.tag)) {
-                    this.tagsSelectedFinal.push(this.tag);
-                }
-
-                let name = this.parsedTags[this.tagIndex].name;
-
-                if(!this.tagsSelectedNames.includes(name)) {
-                    this.tagsSelectedNames.push(name);
-                }
-            },
             removeTag(tagName) {
-                let i = this.tagsSelectedNames.indexOf(tagName);
+                let i = this.tagsSelected.indexOf(tagName);
 
-                if(i != -1) {
-                    this.tagsSelectedNames.splice(i, 1);
-                    this.tagsSelectedFinal.splice(i, 1);
-                }
+                this.tagsSelected.splice(i,1);
             }
         }
     }

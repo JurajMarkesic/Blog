@@ -13,6 +13,13 @@ use Faker\Generator as Faker;
 |
 */
 
+$factory->define(App\Post::class, function (Faker $faker) {
+    return [
+        'title' => $faker->unique()->sentence,
+        'body' => $faker->paragraph,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,

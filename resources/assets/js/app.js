@@ -13,6 +13,9 @@ import vueTinymce from '../../../node_modules/@deveodk/vue-tinymce';
 import '@deveodk/vue-tinymce/dist/@deveodk/vue-tinymce.css';
 Vue.use(vueTinymce);
 
+import vSelect from 'vue-select'
+Vue.component('v-select', vSelect)
+
 export default vueTinymce;
 
 
@@ -48,3 +51,4 @@ const store = {
 const app = new Vue({
     el: '#app'
 });
+

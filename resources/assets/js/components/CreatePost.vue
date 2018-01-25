@@ -8,21 +8,18 @@
         <div class="form-group">
             <vue-tinymce v-model="body" id="bod"></vue-tinymce>
         </div>
+        <br>
 
         <label for="category">Category:</label>
         <select name="category" id="category" v-model="category">
             <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
-        </select>
-        <label for="tags">Add Tags:</label>
-        <select name="tags" id="tags" v-model="tag">
-            <option v-for="tg in parsedTags" :value="tg.id">{{tg.name}}</option>
-        </select>
-        <div v-for="tagName in tagsSelectedNames">
-            <br>
-            <span>{{ tagName }}</span>
-            <button class="btn btn-danger" @click.prevent="removeTag(tagName)">Remove</button>
-        </div>
-        <button class="btn" @click.prevent="addTag">Add Tag</button>
+        </select><br><br>
+
+        <label for="tags">Add Tags:</label><br>
+        <v-select label="name" :options="parsedTags" id="tags" v-model="tagsSelected"  multiple>
+
+        </v-select>
+        <br>
         <button class="btn" @click.prevent="storePost">Done</button>
     </form>
 </template>
@@ -40,27 +37,20 @@
               title: '',
               body: '',
               category: '',
-              tag: '',
               tagsSelected: [],
-              tagsSelectedNames: [],
               csrf: ''
           }
         },
         methods: {
-            addTag() {
-                let name = this.parsedTags[this.tagIndex].name;
-
-                if(!this.tagsSelectedNames.includes(name)) {
-                    this.tagsSelected.push(this.tag);
-                    this.tagsSelectedNames.push(name);
-                }
-            },
             storePost() {
+                console.log(this.tagsSelected);
+                let tagIds = this.tagsSelected.map(a => a.id);
+
                 axios.post('/posts', {
                     'title': this.title,
                     'body': this.body,
                     'category': this.category,
-                    'tags': this.tagsSelected
+                    'tags': tagIds
                 }).then((response) => {
                     console.log(response.data);
                     window.location.href = '/posts/' + response.data.id;
@@ -69,19 +59,13 @@
                 })
             },
             removeTag(tagName) {
-                let i = this.tagsSelectedNames.indexOf(tagName);
+               let i = this.tagsSelected.indexOf(tagName);
 
-                if(i != -1) {
-                    this.tagsSelectedNames.splice(i, 1);
-                    this.tagsSelected.splice(i, 1);
-                }
+               this.tagsSelected.splice(i,1);
             }
         },
         mounted() {
             this.csrf = window.Laravel.csrfToken;
-            // tinymce.init({
-            //     selector: '#body'
-            // });
         },
         computed: {
             parsedCategories() {
@@ -89,17 +73,11 @@
             },
             parsedTags() {
                 return JSON.parse(this.tags);
-            },
-            tagIndex() {
-                return this.parsedTags.findIndex(o => o.id === this.tag);
-
             }
         }
     }
 </script>
 
 <style>
-    #bod {
-        word-break: break-all;
-    }
+
 </style>

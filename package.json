@@ -23,6 +23,7 @@
     "dependencies": {
         "@deveodk/vue-tinymce": "^1.0.0",
         "babel-preset-es2015": "^6.24.1",
-        "tinymce": "^4.7.5"
+        "tinymce": "^4.7.5",
+        "vue-select": "^2.4.0"
     }
 }
