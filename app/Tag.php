@@ -3,15 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Tag extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'name'
     ];
 
     public function posts()
     {
-        $this->belongsToMany('Post')->withTimestamps()->withPivot('tag_id', 'post_id');
+        return $this->belongsToMany('App\Post')->withTimestamps()->withPivot('post_id');
     }
+
 }

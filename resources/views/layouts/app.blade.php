@@ -20,7 +20,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 offset-md-1">
+            <div class="col-md-7 offset-md-1">
                <div class="container mt-5">
                    @yield('content')
                </div>
@@ -32,6 +32,8 @@
             </div>
         </div>
     </div>
+
+    @include('Partials.footer')
 </div>
 
 <!-- Scripts -->
