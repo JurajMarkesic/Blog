@@ -7,13 +7,12 @@
         <vue-tinymce :data="body" v-model="body" id="bod"></vue-tinymce>
         <br>
         <label for="category">Category:</label>
-        <select name="category" id="category" v-model="category">
+        <select name="category" id="category" v-model="category" class="form-control">
             <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
         </select><br><br>
 
         <label for="tags">Add Tags:</label><br>
         <v-select label="name" :options="parsedTags" id="tags" v-model="tagsSelected"  multiple>
-
         </v-select>
         <br>
         <button class="btn btn-success" @click="editPost">Done</button>

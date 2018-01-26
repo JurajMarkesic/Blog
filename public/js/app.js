@@ -120749,7 +120749,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -120828,8 +120828,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.tagsSelected.splice(i, 1);
         }
     },
-    mounted: function mounted() {
+    created: function created() {
         this.csrf = window.Laravel.csrfToken;
+        console.log("This error happens because tinyMCE editor mounts with no content. This is a big in vue-tinymce package.");
     },
 
     computed: {
@@ -120918,6 +120919,7 @@ var render = function() {
               expression: "category"
             }
           ],
+          staticClass: "form-control",
           attrs: { name: "category", id: "category" },
           on: {
             change: function($event) {
@@ -121112,7 +121114,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -121241,6 +121242,7 @@ var render = function() {
               expression: "category"
             }
           ],
+          staticClass: "form-control",
           attrs: { name: "category", id: "category" },
           on: {
             change: function($event) {

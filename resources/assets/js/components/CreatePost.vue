@@ -11,7 +11,7 @@
         <br>
 
         <label for="category">Category:</label>
-        <select name="category" id="category" v-model="category">
+        <select name="category" id="category" v-model="category" class="form-control">
             <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
         </select><br><br>
 
@@ -64,8 +64,9 @@
                this.tagsSelected.splice(i,1);
             }
         },
-        mounted() {
+        created() {
             this.csrf = window.Laravel.csrfToken;
+            console.log("This error happens because tinyMCE editor mounts with no content. This is a big in vue-tinymce package.")
         },
         computed: {
             parsedCategories() {
