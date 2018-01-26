@@ -13,6 +13,7 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('categories');
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
