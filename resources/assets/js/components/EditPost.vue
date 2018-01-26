@@ -16,8 +16,8 @@
 
         </v-select>
         <br>
-        <button class="btn" @click="editPost">Done</button>
-        <button class="btn" @click="deletePost">Delete</button>
+        <button class="btn btn-success" @click="editPost">Done</button>
+        <button class="btn btn-danger" @click="deletePost">Delete</button>
     </div>
 </template>
 

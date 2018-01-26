@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    <posts></posts>
     @auth
-        <form action="/posts/create">
-            <button type="submit" class="btn">New Post</button>
+        <form action="/posts/create" class="mb-5">
+            <button type="submit" class="btn btn-primary">New Post</button>
         </form>
     @endauth
+    <posts></posts>
 @endsection

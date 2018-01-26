@@ -3,7 +3,9 @@
         <h2><a :href="url">{{ post.title}}</a></h2>
         <div id="bod" v-html="post.body"></div>
         <div class="row">
-            <a :href="'/posts/' + post.id" class="col-6 offset-3 col-md-4 offset-md-5"><button>Read the post</button></a>
+            <a :href="'/posts/' + post.id" class="col-6 offset-3 col-md-4 offset-md-5">
+                <button class="btn btn-info text-white">Read the post</button>
+            </a>
         </div>
     </div>
 </template>

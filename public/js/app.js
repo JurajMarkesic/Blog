@@ -120602,6 +120602,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['post'],
@@ -120642,7 +120644,11 @@ var render = function() {
           staticClass: "col-6 offset-3 col-md-4 offset-md-5",
           attrs: { href: "/posts/" + _vm.post.id }
         },
-        [_c("button", [_vm._v("Read the post")])]
+        [
+          _c("button", { staticClass: "btn btn-info text-white" }, [
+            _vm._v("Read the post")
+          ])
+        ]
       )
     ])
   ])
@@ -120962,7 +120968,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn",
+          staticClass: "btn btn-success",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -121282,13 +121288,17 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c("button", { staticClass: "btn", on: { click: _vm.editPost } }, [
-        _vm._v("Done")
-      ]),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", on: { click: _vm.editPost } },
+        [_vm._v("Done")]
+      ),
       _vm._v(" "),
-      _c("button", { staticClass: "btn", on: { click: _vm.deletePost } }, [
-        _vm._v("Delete")
-      ])
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", on: { click: _vm.deletePost } },
+        [_vm._v("Delete")]
+      )
     ],
     1
   )

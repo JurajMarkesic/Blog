@@ -20,7 +20,7 @@
 
         </v-select>
         <br>
-        <button class="btn" @click.prevent="storePost">Done</button>
+        <button class="btn btn-success" @click.prevent="storePost">Done</button>
     </form>
 </template>
 
