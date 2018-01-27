@@ -37,10 +37,7 @@
            fetchPosts(page_url) {
                if(typeof(page_url) === 'undefined') {
                    page_url = '/posts';
-               } else {
-                   page_url = page_url.split("?");
-                   page_url = '/posts/?' + page_url[1];
-               }
+               } 
                axios.get(page_url)
                    .then((response) => {
                        console.log(response.data);

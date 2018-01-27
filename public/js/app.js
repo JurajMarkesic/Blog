@@ -120131,7 +120131,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -120217,9 +120217,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (typeof page_url === 'undefined') {
                 page_url = '/posts';
-            } else {
-                page_url = page_url.split("?");
-                page_url = '/posts/?' + page_url[1];
             }
             axios.get(page_url).then(function (response) {
                 console.log(response.data);
