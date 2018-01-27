@@ -20,12 +20,12 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-7 offset-md-1">
-               <div class="container mt-5">
+            <div class="col-12 col-md-7 offset-md-1">
+               <div class="container  mt-5">
                    @yield('content')
                </div>
             </div>
-            <div class="col-md-2 offset-md-1">
+            <div class="col-md-3 col-lg-2 offset-lg-1 d-none d-md-block">
                 <div class="container">
                     @include('Partials.aside')
                 </div>

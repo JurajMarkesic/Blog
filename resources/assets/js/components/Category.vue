@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <a :href="url">{{ category.title }}</a>
-        <button class="btn btn-danger ml-3" @click="removeCat">Remove</button>
+    <div class="row">
+        <td class="col-6 col-md-4"><a :href="url">{{ category.title }}</a></td>
+        <td><button class="btn btn-danger ml-3" @click="removeCat">Remove</button></td>
     </div>
 </template>
 

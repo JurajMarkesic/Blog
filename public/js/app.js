@@ -122150,7 +122150,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -122162,6 +122162,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(4);
+//
+//
 //
 //
 //
@@ -122225,61 +122227,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h3", [_vm._v("Add a Category:")]),
+  return _c("div", [
+    _c("h3", [_vm._v("Add a Category:")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "cat" } }, [_vm._v("Name:")]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "cat" } }, [_vm._v("Name:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.newCat,
-              expression: "newCat"
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.newCat,
+            expression: "newCat"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", id: "cat" },
+        domProps: { value: _vm.newCat },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", id: "cat" },
-          domProps: { value: _vm.newCat },
+            _vm.newCat = $event.target.value
+          }
+        }
+      }),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.newCat = $event.target.value
+            click: function($event) {
+              $event.preventDefault()
+              _vm.addCat($event)
             }
           }
-        }),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.addCat($event)
-              }
-            }
-          },
-          [_vm._v("Add")]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.categories, function(category) {
-        return _c("category", {
-          key: category.id,
-          attrs: { category: category }
+        },
+        [_vm._v("Add")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-striped" }, [
+      _c(
+        "tr",
+        _vm._l(_vm.categories, function(category) {
+          return _c("category", {
+            key: category.id,
+            attrs: { category: category }
+          })
         })
-      })
-    ],
-    2
-  )
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -122423,14 +122426,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("a", { attrs: { href: _vm.url } }, [_vm._v(_vm._s(_vm.category.title))]),
+  return _c("div", { staticClass: "row" }, [
+    _c("td", { staticClass: "col-6 col-md-4" }, [
+      _c("a", { attrs: { href: _vm.url } }, [
+        _vm._v(_vm._s(_vm.category.title))
+      ])
+    ]),
     _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-danger ml-3", on: { click: _vm.removeCat } },
-      [_vm._v("Remove")]
-    )
+    _c("td", [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger ml-3", on: { click: _vm.removeCat } },
+        [_vm._v("Remove")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -122836,7 +122845,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -122848,6 +122857,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(4);
+//
+//
 //
 //
 //
@@ -122911,58 +122922,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h3", [_vm._v("Add a Tag")]),
+  return _c("div", [
+    _c("h3", [_vm._v("Add a Tag")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "tg" } }, [_vm._v("Name:")]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "tg" } }, [_vm._v("Name:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.newTag,
-              expression: "newTag"
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.newTag,
+            expression: "newTag"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", id: "tg" },
+        domProps: { value: _vm.newTag },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", id: "tg" },
-          domProps: { value: _vm.newTag },
+            _vm.newTag = $event.target.value
+          }
+        }
+      }),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.newTag = $event.target.value
+            click: function($event) {
+              $event.preventDefault()
+              _vm.addTag($event)
             }
           }
-        }),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.addTag($event)
-              }
-            }
-          },
-          [_vm._v("Add")]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.tags, function(tag) {
-        return _c("tag", { key: tag.id, attrs: { tag: tag } })
-      })
-    ],
-    2
-  )
+        },
+        [_vm._v("Add")]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-striped" },
+      [
+        _c("tr"),
+        _vm._l(_vm.tags, function(tag) {
+          return _c("tag", { key: tag.id, attrs: { tag: tag } })
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -123106,14 +123121,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("span", [_vm._v(_vm._s(_vm.tag.name))]),
+  return _c("div", { staticClass: "row" }, [
+    _c("td", { staticClass: "col-6 col-md-4" }, [
+      _c("span", [_vm._v(_vm._s(_vm.tag.name))])
+    ]),
     _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-danger ml-3", on: { click: _vm.removeTag } },
-      [_vm._v("Remove")]
-    )
+    _c("td", [
+      _c(
+        "button",
+        { staticClass: "btn btn-danger ml-3", on: { click: _vm.removeTag } },
+        [_vm._v("Remove")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []

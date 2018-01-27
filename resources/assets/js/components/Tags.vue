@@ -8,7 +8,9 @@
             <button class="btn btn-primary" @click.prevent="addTag">Add</button>
         </div>
 
-        <tag v-for="tag in tags" :tag="tag" :key="tag.id"></tag>
+        <table class="table table-striped">
+            <tr></tr><tag v-for="tag in tags" :tag="tag" :key="tag.id"></tag></tr>
+        </table>
 
     </div>
 </template>

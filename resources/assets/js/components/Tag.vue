@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <span>{{ tag.name }}</span>
-        <button class="btn btn-danger ml-3" @click="removeTag">Remove</button>
+    <div class="row">
+        <td class="col-6 col-md-4"><span>{{ tag.name }}</span></td>
+        <td><button class="btn btn-danger ml-3" @click="removeTag">Remove</button></td>
     </div>
 </template>
 

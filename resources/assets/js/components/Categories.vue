@@ -8,7 +8,9 @@
         <button class="btn btn-primary" @click.prevent="addCat">Add</button>
     </div>
 
-    <category v-for="category in categories" :category="category" :key="category.id"></category>
+   <table class="table table-striped">
+       <tr><category v-for="category in categories" :category="category" :key="category.id"></category></tr>
+   </table>
 
 </div>
 </template>
