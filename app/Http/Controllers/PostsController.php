@@ -24,6 +24,11 @@ class PostsController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
 
+        if (env('APP_ENV') === 'production') {
+            $posts->setBaseUrl('https://' . Request::getHttpHost() . '/' . Request::path());
+        }
+
+
         return response()->json([
             'posts' => $posts, 'msg' => 'Posts fetched!']);
     }
