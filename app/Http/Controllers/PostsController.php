@@ -20,7 +20,7 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
