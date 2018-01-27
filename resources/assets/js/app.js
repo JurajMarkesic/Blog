@@ -14,7 +14,7 @@ import '@deveodk/vue-tinymce/dist/@deveodk/vue-tinymce.css';
 Vue.use(vueTinymce);
 
 import vSelect from 'vue-select'
-Vue.component('v-select', vSelect)
+Vue.component('v-select', vSelect);
 
 export default vueTinymce;
 
@@ -40,9 +40,11 @@ Vue.component('categories', require('./components/Categories.vue'));
 Vue.component('category', require('./components/Category.vue'));
 Vue.component('category-posts', require('./components/CategoryPosts.vue'));
 Vue.component('search-results', require('./components/SearchResults.vue'));
+Vue.component('tags', require('./components/Tags.vue'));
+Vue.component('tag', require('./components/Tag.vue'));
 
 
-
+export const eventBus = new Vue();
 
 const store = {
 

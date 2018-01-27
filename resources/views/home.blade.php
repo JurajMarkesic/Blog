@@ -17,6 +17,22 @@
                     You are logged in!
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">Categories</div>
+
+                <div class="card-body">
+                    <categories></categories>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Tags</div>
+
+                <div class="card-body">
+                    <tags></tags>
+                </div>
+            </div>
         </div>
     </div>
 </div>

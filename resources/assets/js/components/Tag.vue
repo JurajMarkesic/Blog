@@ -1,7 +1,7 @@
 <template>
     <div>
-        <a :href="url">{{ category.title }}</a>
-        <button class="btn btn-danger ml-3" @click="removeCat">Remove</button>
+        <span>{{ tag.name }}</span>
+        <button class="btn btn-danger ml-3" @click="removeTag">Remove</button>
     </div>
 </template>
 
@@ -10,18 +10,18 @@
 
     export default {
         props: [
-            'category'
+            'tag'
         ],
         computed: {
             url() {
-                return '/categories/' + this.category.id;
+                return '/tags/' + this.tag.id;
             }
         },
         methods: {
-            removeCat() {
-                axios.delete(this.url + '/delete')
+            removeTag() {
+                axios.delete(this.url +  '/delete')
                     .then((response) => {
-                        eventBus.$emit('cat-deleted');
+                        eventBus.$emit('tag-deleted');
                     })
             }
         }

@@ -1,7 +1,7 @@
 <template>
     <div id="postWrap">
         <h2><a :href="url">{{ post.title}}</a></h2>
-        <div id="bod" v-html="post.body"></div>
+        <p id="bod" v-html="post.body"></p>
         <div class="row">
             <a :href="'/posts/' + post.id" class="col-6 offset-3 col-md-4 offset-md-5">
                 <button class="btn btn-info text-white">Read the post</button>
@@ -32,7 +32,8 @@
 <style>
     #bod {
         word-break: break-all;
-        height: 10rem;
+        line-height: 1.2em;
+        height: 7.2em;
         overflow:hidden;
     }
 
