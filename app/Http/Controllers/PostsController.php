@@ -24,6 +24,7 @@ class PostsController extends Controller
     {
 
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        $posts->setPath('');
 
         return response()->json([
             'posts' => $posts, 'msg' => 'Posts fetched!']);
