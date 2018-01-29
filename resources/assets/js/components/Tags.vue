@@ -4,8 +4,9 @@
 
         <div class="form-group">
             <label for="tg">Name:</label>
-            <input type="text" class="form-control" v-model="newTag" id="tg"><br>
-            <button class="btn btn-primary" @click.prevent="addTag">Add</button>
+            <input type="text" class="form-control" v-model="newTag" id="tg" @keyup="clearErrors">
+            <span class="text-muted">{{ error }}</span><br>
+            <button class="btn bg-dark text-white" @click.prevent="addTag">Add</button>
         </div>
 
         <table class="table table-striped">
@@ -23,7 +24,8 @@
             return {
                 tags: [],
                 tag: '',
-                newTag: ''
+                newTag: '',
+                error: ''
             }
         },
         methods: {
@@ -41,8 +43,12 @@
                 }).then((response) => {
                     this.fetchTags();
                 }).catch((error) => {
-                    console.log(error.data);
+                    console.log(error.response.data.errors);
+                    this.error = error.response.data.errors.name[0];
                 })
+            },
+            clearErrors() {
+                this.error = '';
             }
 
         },

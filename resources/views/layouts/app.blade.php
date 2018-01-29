@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-
+    <popular class="d-md-none"></popular>
     @include('Partials.footer')
 </div>
 

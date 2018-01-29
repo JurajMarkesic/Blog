@@ -41,8 +41,8 @@
         margin-bottom: 3rem;
     }
 
-    h2 {
-        color: #343a40;
+    h2 a {
+        color: #000033;
     }
 
 </style>

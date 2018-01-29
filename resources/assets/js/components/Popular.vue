@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="bg-dark text-white">Popular</h3>
-        <side-post v-for="post in posts" :post="post" :key="post.id"></side-post>
+        <side-post v-for="post in posts" :post="post" :key="post.id" class="mr-1"></side-post>
     </div>
 </template>
 
@@ -29,5 +29,7 @@
 </script>
 
 <style>
-
+    h3 {
+        padding: 3px 6px;
+    }
 </style>

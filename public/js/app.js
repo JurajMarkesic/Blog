@@ -120317,7 +120317,7 @@ var render = function() {
               {
                 staticClass: "page-link",
                 attrs: {
-                  href: "#",
+                  href: "",
                   "aria-label": "Next",
                   disabled: !_vm.pagination.next_page_url
                 },
@@ -120436,7 +120436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#bod {\n    word-break: break-all;\n}\n", ""]);
+exports.push([module.i, "\n#bod {\n    word-break: break-all;\n}\nh2 {\n    color: #000033;\n    text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -120461,6 +120461,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         parsedPost: function parsedPost() {
             return JSON.parse(this.post);
+        },
+        date: function date() {
+            var dateArray = this.parsedPost.created_at.split(" ");
+            return dateArray[0];
         }
     },
     methods: {}
@@ -120475,10 +120479,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v(_vm._s(_vm.parsedPost.title))]),
+    _c("h2", [_vm._v(_vm._s(_vm.parsedPost.title))]),
     _vm._v(" "),
-    _c("p", { staticClass: "form-text text-muted" }, [
-      _vm._v("Views: " + _vm._s(_vm.parsedPost.views))
+    _c("p", { staticClass: "form-text text-muted mb-5" }, [
+      _vm._v("Views: " + _vm._s(_vm.parsedPost.views) + "   "),
+      _c("span", { staticClass: "ml-5" }, [_vm._v(_vm._s(_vm.date))])
     ]),
     _vm._v(" "),
     _c("div", {
@@ -120583,7 +120588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    line-height: 1.2em;\n    height: 7.2em;\n    overflow:hidden;\n}\n#postWrap {\n    margin-bottom: 3rem;\n}\nh2 {\n    color: #343a40;\n}\n\n", ""]);
+exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    line-height: 1.2em;\n    height: 7.2em;\n    overflow:hidden;\n}\n#postWrap {\n    margin-bottom: 3rem;\n}\nh2 a {\n    color: #000033;\n}\n\n", ""]);
 
 // exports
 
@@ -120751,7 +120756,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -120763,6 +120768,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(4);
+//
+//
+//
 //
 //
 //
@@ -120801,12 +120809,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             body: '',
             category: '',
             tagsSelected: [],
-            csrf: ''
+            csrf: '',
+            errors: {
+                title: '',
+                body: '',
+                category: ''
+            }
         };
     },
 
     methods: {
         storePost: function storePost() {
+            var _this = this;
+
             console.log(this.tagsSelected);
             var tagIds = this.tagsSelected.map(function (a) {
                 return a.id;
@@ -120821,13 +120836,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
                 window.location.href = '/posts/' + response.data.id;
             }).catch(function (error) {
-                console.log(error.data);
+                console.log(error.response.data.errors);
+                if (error.response.data.errors.title) {
+                    _this.errors.title = error.response.data.errors.title[0];
+                }
+                if (error.response.data.errors.body) {
+                    _this.errors.body = error.response.data.errors.body[0];
+                }
+                if (error.response.data.errors.category) {
+                    _this.errors.category = error.response.data.errors.category[0];
+                }
             });
         },
         removeTag: function removeTag(tagName) {
             var i = this.tagsSelected.indexOf(tagName);
 
             this.tagsSelected.splice(i, 1);
+        },
+        clearErrors: function clearErrors() {
+            this.errors = {
+                title: '',
+                body: '',
+                category: ''
+            };
         }
     },
     created: function created() {
@@ -120878,6 +120909,7 @@ var render = function() {
           attrs: { type: "text", id: "title", name: "title" },
           domProps: { value: _vm.title },
           on: {
+            keyup: _vm.clearErrors,
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -120885,7 +120917,12 @@ var render = function() {
               _vm.title = $event.target.value
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "text-muted" }, [
+          _vm._v(_vm._s(_vm.errors.title))
+        ]),
+        _c("br")
       ]),
       _vm._v(" "),
       _c(
@@ -120894,6 +120931,7 @@ var render = function() {
         [
           _c("vue-tinymce", {
             attrs: { id: "bod" },
+            on: { change: _vm.clearErrors },
             model: {
               value: _vm.body,
               callback: function($$v) {
@@ -120901,12 +120939,15 @@ var render = function() {
               },
               expression: "body"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-muted" }, [
+            _vm._v(_vm._s(_vm.errors.body))
+          ]),
+          _c("br")
         ],
         1
       ),
-      _vm._v(" "),
-      _c("br"),
       _vm._v(" "),
       _c("label", { attrs: { for: "category" } }, [_vm._v("Category:")]),
       _vm._v(" "),
@@ -120924,19 +120965,22 @@ var render = function() {
           staticClass: "form-control",
           attrs: { name: "category", id: "category" },
           on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.category = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.category = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.clearErrors
+            ]
           }
         },
         _vm._l(_vm.parsedCategories, function(cat) {
@@ -120945,6 +120989,10 @@ var render = function() {
           ])
         })
       ),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-muted" }, [
+        _vm._v(_vm._s(_vm.errors.category))
+      ]),
       _c("br"),
       _c("br"),
       _vm._v(" "),
@@ -121116,6 +121164,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -121126,7 +121176,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             title: '',
             body: '',
             tag: '',
-            tagsSelected: []
+            tagsSelected: [],
+            errors: {
+                title: '',
+                body: '',
+                category: ''
+            }
         };
     },
     created: function created() {
@@ -121168,6 +121223,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 console.log(response.data);
                 window.location.href = _this.url;
+            }).catch(function (error) {
+                console.log(error.response.data.errors);
+                if (error.response.data.errors.title) {
+                    _this.errors.title = error.response.data.errors.title[0];
+                }
+                if (error.response.data.errors.body) {
+                    _this.errors.body = error.response.data.errors.body[0];
+                }
+                if (error.response.data.errors.category) {
+                    _this.errors.category = error.response.data.errors.category[0];
+                }
             });
         },
         deletePost: function deletePost() {
@@ -121177,6 +121243,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var i = this.tagsSelected.indexOf(tagName);
 
             this.tagsSelected.splice(i, 1);
+        },
+        clearErrors: function clearErrors() {
+            this.errors = {
+                title: '',
+                body: '',
+                category: ''
+            };
         }
     }
 });
@@ -121208,6 +121281,7 @@ var render = function() {
           attrs: { type: "text", name: "title", id: "title" },
           domProps: { value: _vm.title },
           on: {
+            keyup: _vm.clearErrors,
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -121215,11 +121289,17 @@ var render = function() {
               _vm.title = $event.target.value
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "text-muted" }, [
+          _vm._v(_vm._s(_vm.errors.title))
+        ]),
+        _c("br")
       ]),
       _vm._v(" "),
       _c("vue-tinymce", {
         attrs: { data: _vm.body, id: "bod" },
+        on: { change: _vm.clearErrors },
         model: {
           value: _vm.body,
           callback: function($$v) {
@@ -121229,6 +121309,9 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _c("span", { staticClass: "text-muted" }, [
+        _vm._v(_vm._s(_vm.errors.body))
+      ]),
       _c("br"),
       _vm._v(" "),
       _c("label", { attrs: { for: "category" } }, [_vm._v("Category:")]),
@@ -121247,19 +121330,22 @@ var render = function() {
           staticClass: "form-control",
           attrs: { name: "category", id: "category" },
           on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.category = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.category = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.clearErrors
+            ]
           }
         },
         _vm._l(_vm.parsedCategories, function(cat) {
@@ -121268,6 +121354,9 @@ var render = function() {
           ])
         })
       ),
+      _c("span", { staticClass: "text-muted" }, [
+        _vm._v(_vm._s(_vm.errors.category))
+      ]),
       _c("br"),
       _c("br"),
       _vm._v(" "),
@@ -121281,6 +121370,7 @@ var render = function() {
           id: "tags",
           multiple: ""
         },
+        on: { change: _vm.clearErrors },
         model: {
           value: _vm.tagsSelected,
           callback: function($$v) {
@@ -121403,7 +121493,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nh3 {\n    padding: 3px 6px;\n}\n", ""]);
 
 // exports
 
@@ -121459,7 +121549,11 @@ var render = function() {
       _c("h3", { staticClass: "bg-dark text-white" }, [_vm._v("Popular")]),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
-        return _c("side-post", { key: post.id, attrs: { post: post } })
+        return _c("side-post", {
+          key: post.id,
+          staticClass: "mr-1",
+          attrs: { post: post }
+        })
       })
     ],
     2
@@ -121600,7 +121694,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("span", { staticClass: "text-muted" }, [
-      _vm._v("Views: " + _vm._s(_vm.post.views))
+      _vm._v(_vm._s(_vm.post.views) + " views")
     ])
   ])
 }
@@ -121700,7 +121794,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nh3 {\n    padding: 3px 6px;\n}\n", ""]);
 
 // exports
 
@@ -121756,7 +121850,11 @@ var render = function() {
       _c("h3", { staticClass: "bg-dark text-white" }, [_vm._v("Recent")]),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
-        return _c("side-post", { key: post.id, attrs: { post: post } })
+        return _c("side-post", {
+          key: post.id,
+          staticClass: "mr-1",
+          attrs: { post: post }
+        })
       })
     ],
     2
@@ -121858,7 +121956,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nh3 {\n    padding: 3px 6px;\n}\n", ""]);
 
 // exports
 
@@ -121917,6 +122015,7 @@ var render = function() {
       _vm._l(_vm.categories, function(category) {
         return _c("side-category", {
           key: category.id,
+          staticClass: "mr-1",
           attrs: { category: category }
         })
       })
@@ -122150,7 +122249,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -122179,6 +122278,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -122187,7 +122287,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             categories: [],
             category: '',
-            newCat: ''
+            newCat: '',
+            error: ''
         };
     },
 
@@ -122209,8 +122310,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this2.fetchCategories();
             }).catch(function (error) {
-                console.log(error.data);
+                console.log(error.response.data.errors);
+                _this2.error = error.response.data.errors.title[0];
             });
+        },
+        clearErrors: function clearErrors() {
+            this.error = '';
         }
     },
     created: function created() {
@@ -122246,6 +122351,7 @@ var render = function() {
         attrs: { type: "text", id: "cat" },
         domProps: { value: _vm.newCat },
         on: {
+          keyup: _vm.clearErrors,
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -122254,12 +122360,14 @@ var render = function() {
           }
         }
       }),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-muted" }, [_vm._v(_vm._s(_vm.error))]),
       _c("br"),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn bg-dark text-white",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -122845,7 +122953,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -122874,6 +122982,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -122882,7 +122991,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             tags: [],
             tag: '',
-            newTag: ''
+            newTag: '',
+            error: ''
         };
     },
 
@@ -122904,8 +123014,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this2.fetchTags();
             }).catch(function (error) {
-                console.log(error.data);
+                console.log(error.response.data.errors);
+                _this2.error = error.response.data.errors.name[0];
             });
+        },
+        clearErrors: function clearErrors() {
+            this.error = '';
         }
     },
     created: function created() {
@@ -122941,6 +123055,7 @@ var render = function() {
         attrs: { type: "text", id: "tg" },
         domProps: { value: _vm.newTag },
         on: {
+          keyup: _vm.clearErrors,
           input: function($event) {
             if ($event.target.composing) {
               return
@@ -122949,12 +123064,14 @@ var render = function() {
           }
         }
       }),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-muted" }, [_vm._v(_vm._s(_vm.error))]),
       _c("br"),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn bg-dark text-white",
           on: {
             click: function($event) {
               $event.preventDefault()

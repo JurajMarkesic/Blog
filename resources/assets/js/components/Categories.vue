@@ -4,8 +4,9 @@
 
     <div class="form-group">
         <label for="cat">Name:</label>
-        <input type="text" class="form-control" v-model="newCat" id="cat"><br>
-        <button class="btn btn-primary" @click.prevent="addCat">Add</button>
+        <input type="text" class="form-control" v-model="newCat" id="cat" @keyup="clearErrors">
+        <span class="text-muted">{{ error }}</span><br>
+        <button class="btn bg-dark text-white" @click.prevent="addCat">Add</button>
     </div>
 
    <table class="table table-striped">
@@ -23,7 +24,8 @@
             return {
                 categories: [],
                 category: '',
-                newCat: ''
+                newCat: '',
+                error: ''
             }
         },
         methods: {
@@ -41,8 +43,12 @@
                 }).then((response) => {
                     this.fetchCategories();
                 }).catch((error) => {
-                    console.log(error.data);
+                    console.log(error.response.data.errors);
+                    this.error = error.response.data.errors.title[0];
                 })
+            },
+            clearErrors() {
+                this.error = '';
             }
 
         },

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 class="bg-dark text-white">Categories</h3>
-        <side-category v-for="category in categories" :category="category" :key="category.id"></side-category>
+        <side-category v-for="category in categories" :category="category" :key="category.id" class="mr-1"></side-category>
     </div>
 </template>
 
@@ -30,5 +30,7 @@
 </script>
 
 <style>
-
+    h3 {
+        padding: 3px 6px;
+    }
 </style>

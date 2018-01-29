@@ -51,6 +51,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:posts',
+            'body' => 'required',
+            'category' => 'required'
+        ]);
+
+
         $title = $request->input('title');
         $body = $request->input('body');
         $category = $request->input('category');
@@ -111,6 +118,12 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:posts',
+            'body' => 'required',
+            'category' => 'required'
+        ]);
+
         $title = $request->input('title');
         $body = $request->input('body');
         $category = $request->input('category');

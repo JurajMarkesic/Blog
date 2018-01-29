@@ -18,6 +18,10 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:tags'
+        ]);
+
         $tag = new Tag();
 
         $name = $request->input('name');
