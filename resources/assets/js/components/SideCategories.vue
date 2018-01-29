@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>Categories:</h3>
+        <h3 class="bg-dark text-white">Categories</h3>
         <side-category v-for="category in categories" :category="category" :key="category.id"></side-category>
     </div>
 </template>

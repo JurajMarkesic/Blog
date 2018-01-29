@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>Popular:</h3>
+        <h3 class="bg-dark text-white">Popular</h3>
         <side-post v-for="post in posts" :post="post" :key="post.id"></side-post>
     </div>
 </template>

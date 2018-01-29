@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h3>Add a Category:</h3>
+    <h3>Add a Category</h3>
 
     <div class="form-group">
         <label for="cat">Name:</label>

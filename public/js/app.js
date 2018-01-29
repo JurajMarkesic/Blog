@@ -120583,7 +120583,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    line-height: 1.2em;\n    height: 7.2em;\n    overflow:hidden;\n}\n#postWrap {\n    margin-bottom: 3rem;\n}\n\n", ""]);
+exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    line-height: 1.2em;\n    height: 7.2em;\n    overflow:hidden;\n}\n#postWrap {\n    margin-bottom: 3rem;\n}\nh2 {\n    color: #343a40;\n}\n\n", ""]);
 
 // exports
 
@@ -120647,7 +120647,7 @@ var render = function() {
           attrs: { href: "/posts/" + _vm.post.id }
         },
         [
-          _c("button", { staticClass: "btn btn-info text-white" }, [
+          _c("button", { staticClass: "btn bg-dark text-white" }, [
             _vm._v("Read the post")
           ])
         ]
@@ -121456,7 +121456,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h3", [_vm._v("Popular:")]),
+      _c("h3", { staticClass: "bg-dark text-white" }, [_vm._v("Popular")]),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
         return _c("side-post", { key: post.id, attrs: { post: post } })
@@ -121753,7 +121753,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h3", [_vm._v("Recent:")]),
+      _c("h3", { staticClass: "bg-dark text-white" }, [_vm._v("Recent")]),
       _vm._v(" "),
       _vm._l(_vm.posts, function(post) {
         return _c("side-post", { key: post.id, attrs: { post: post } })
@@ -121912,7 +121912,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h3", [_vm._v("Categories:")]),
+      _c("h3", { staticClass: "bg-dark text-white" }, [_vm._v("Categories")]),
       _vm._v(" "),
       _vm._l(_vm.categories, function(category) {
         return _c("side-category", {
@@ -122228,7 +122228,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v("Add a Category:")]),
+    _c("h3", [_vm._v("Add a Category")]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "cat" } }, [_vm._v("Name:")]),

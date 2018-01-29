@@ -4,7 +4,7 @@
         <p id="bod" v-html="post.body"></p>
         <div class="row">
             <a :href="'/posts/' + post.id" class="col-6 offset-3 col-md-4 offset-md-5">
-                <button class="btn btn-info text-white">Read the post</button>
+                <button class="btn bg-dark text-white">Read the post</button>
             </a>
         </div>
     </div>
@@ -39,6 +39,10 @@
 
     #postWrap {
         margin-bottom: 3rem;
+    }
+
+    h2 {
+        color: #343a40;
     }
 
 </style>
