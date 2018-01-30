@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['destroy']]);
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['store', 'destroy']]);
+    }
+
     public function store(Request $request)                             //stores a comment
     {
         $this->validate($request, [
