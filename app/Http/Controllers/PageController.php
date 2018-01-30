@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class PageController extends Controller
 {
@@ -14,5 +15,10 @@ class PageController extends Controller
     public function categories()
     {
         return view('Categories.categories');
+    }
+
+    public function logged()
+    {
+        return response()->json(['isLoggedIn' =>  Auth::check()]);
     }
 }

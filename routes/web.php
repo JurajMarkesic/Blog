@@ -46,3 +46,13 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::post('/categories/store', 'CategoryController@store');
 
 Route::delete('/categories/{category}/delete', 'CategoryController@destroy');
+
+
+Route::post('/comments', 'CommentController@store');
+
+Route::get('/comments/{post}', 'CommentController@show');
+
+Route::delete('/comments/{comment}', 'CommentController@destroy');
+
+
+Route::get('/logged', 'PageController@logged');

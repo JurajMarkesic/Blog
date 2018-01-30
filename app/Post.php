@@ -22,4 +22,9 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag')->withTimestamps()->withPivot('tag_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

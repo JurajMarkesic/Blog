@@ -42,6 +42,9 @@ Vue.component('category-posts', require('./components/CategoryPosts.vue'));
 Vue.component('search-results', require('./components/SearchResults.vue'));
 Vue.component('tags', require('./components/Tags.vue'));
 Vue.component('tag', require('./components/Tag.vue'));
+Vue.component('comments', require('./components/Comments.vue'));
+Vue.component('comment', require('./components/Comment.vue'));
+
 
 
 export const eventBus = new Vue();
