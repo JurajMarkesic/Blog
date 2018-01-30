@@ -123028,6 +123028,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.username = '';
             axios.get('/comments/' + this.post.id).then(function (response) {
                 _this.comments = response.data;
+                _this.checkIfLoggedIn();
             }).catch(function (error) {
                 console.log(error.data);
             });
@@ -123041,7 +123042,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'post_id': this.post.id
             }).then(function () {
                 _this2.fetchComments();
-                _this2.checkIfLoggedIn();
             }).catch(function (error) {
                 console.log(error.data);
             });

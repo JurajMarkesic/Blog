@@ -46,6 +46,7 @@
                 axios.get('/comments/' + this.post.id)
                     .then((response) => {
                         this.comments = response.data;
+                        this.checkIfLoggedIn();
                     }).catch((error) => {
                         console.log(error.data);
                 })
@@ -57,7 +58,6 @@
                     'post_id': this.post.id
                 }).then(() => {
                     this.fetchComments();
-                    this.checkIfLoggedIn();
                 }).catch((error) => {
                     console.log(error.data);
                 })
