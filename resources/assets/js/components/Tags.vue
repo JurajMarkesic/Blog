@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>Add a Tag</h3>
+        <h3>Add a Tag:</h3>
 
         <div class="form-group">
             <label for="tg">Name:</label>

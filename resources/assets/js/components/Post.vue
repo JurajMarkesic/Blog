@@ -29,9 +29,11 @@
 <style>
     #bod {
         word-break: break-all;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
     }
     h2 {
         color: #000033;
         text-align: center;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
     }
 </style>

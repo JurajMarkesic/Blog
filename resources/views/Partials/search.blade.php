@@ -3,6 +3,6 @@
         <div class="mysearchbar">
             <input name="search" placeholder="Search...">
         </div>
-        <button class="btn" type=submit>Search</button>
+        <button class="btn btn-light" type=submit>Search</button>
     </form>
 </li>

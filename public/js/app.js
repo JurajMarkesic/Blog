@@ -120317,7 +120317,7 @@ var render = function() {
               {
                 staticClass: "page-link",
                 attrs: {
-                  href: "",
+                  href: "#",
                   "aria-label": "Next",
                   disabled: !_vm.pagination.next_page_url
                 },
@@ -120436,7 +120436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#bod {\n    word-break: break-all;\n}\nh2 {\n    color: #000033;\n    text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    font-family: \"Trebuchet MS\", Helvetica, sans-serif;\n}\nh2 {\n    color: #000033;\n    text-align: center;\n    font-family: \"Trebuchet MS\", Helvetica, sans-serif;\n}\n", ""]);
 
 // exports
 
@@ -120588,7 +120588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    line-height: 1.2em;\n    height: 7.2em;\n    overflow:hidden;\n}\n#postWrap {\n    margin-bottom: 3rem;\n}\nh2 a {\n    color: #000033;\n}\n\n", ""]);
+exports.push([module.i, "\n#bod {\n    word-break: break-all;\n    line-height: 1.2em;\n    height: 7.2em;\n    overflow:hidden;\n    font-family: \"Trebuchet MS\", Helvetica, sans-serif;\n}\n#postWrap {\n    margin-bottom: 3rem;\n}\nh2 a {\n    color: #000033;\n}\n\n", ""]);
 
 // exports
 
@@ -122333,7 +122333,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v("Add a Category")]),
+    _c("h3", [_vm._v("Add a Category:")]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "cat" } }, [_vm._v("Name:")]),
@@ -123037,7 +123037,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h3", [_vm._v("Add a Tag")]),
+    _c("h3", [_vm._v("Add a Tag:")]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "tg" } }, [_vm._v("Name:")]),

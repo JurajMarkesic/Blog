@@ -4,7 +4,7 @@
        <post post="{{ $post }}"></post>
         @auth
             <form action="/posts/{{$post->id}}/edit" >
-                <button class="btn btn-primary" type="submit">Edit</button>
+                <button class="btn btn-outline-primary" type="submit">Edit</button>
             </form>
         @endauth
    </div>

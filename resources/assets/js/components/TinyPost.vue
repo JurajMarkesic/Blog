@@ -35,6 +35,7 @@
         line-height: 1.2em;
         height: 7.2em;
         overflow:hidden;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
     }
 
     #postWrap {

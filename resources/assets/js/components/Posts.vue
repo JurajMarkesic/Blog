@@ -12,7 +12,7 @@
                 <span class="page-link" style="color: black">Page {{pagination.current_page}} of {{pagination.last_page}}</span>
             </li>
             <li :class="{'page-item': true, 'disabled': !pagination.next_page_url}">
-                <a class="page-link" href="" aria-label="Next" @click="fetchPosts(pagination.next_page_url)"
+                <a class="page-link" href="#" aria-label="Next" @click="fetchPosts(pagination.next_page_url)"
                    :disabled="!pagination.next_page_url">
                     <span aria-hidden="true">Next</span>
                 </a>
