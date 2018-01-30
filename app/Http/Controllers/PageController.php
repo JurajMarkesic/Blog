@@ -17,7 +17,7 @@ class PageController extends Controller
         return view('Categories.categories');
     }
 
-    public function logged()
+    public function logged()                                    //check if a user is logged in
     {
         return response()->json(['isLoggedIn' =>  Auth::check()]);
     }

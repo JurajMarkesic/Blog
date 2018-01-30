@@ -11,48 +11,53 @@
 |
 */
 
-Route::get('/', 'PageController@index');
-
-
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/search', 'SearchController@search');
+Route::get('/', 'PageController@index');
 
 Route::get('/posts/popular', 'PostsController@popular');
+
 Route::get('/posts/recent', 'PostsController@recent');
 
 
 Route::resource('posts', 'PostsController');
 
 
-Route::get('/tags', 'TagController@index');
+Route::prefix('/tags/')->group(function() {
+    Route::get('', 'TagController@index');
 
-Route::post('/tags/store', 'TagController@store');
+    Route::post('/store', 'TagController@store');
 
-Route::post('/tags/attach', 'TagController@attach');
+    Route::post('attach', 'TagController@attach');
 
-Route::delete('/tags/{tag}/delete', 'TagController@destroy');
-
-
-Route::get('/categories', 'PageController@categories');
-
-Route::get('/categories/all', 'CategoryController@index');
-
-Route::get('/categories/{category}', 'CategoryController@show');
-
-Route::post('/categories/store', 'CategoryController@store');
-
-Route::delete('/categories/{category}/delete', 'CategoryController@destroy');
+    Route::delete('{tag}/delete', 'TagController@destroy');
+});
 
 
-Route::post('/comments', 'CommentController@store');
+Route::prefix('/categories/')->group(function() {
+    Route::get('', 'PageController@categories');
 
-Route::get('/comments/{post}', 'CommentController@show');
+    Route::get('all', 'CategoryController@index');
 
-Route::delete('/comments/{comment}', 'CommentController@destroy');
+    Route::get('{category}', 'CategoryController@show');
 
+    Route::post('store', 'CategoryController@store');
+
+    Route::delete('{category}/delete', 'CategoryController@destroy');
+});
+
+
+Route::prefix('/comments/')->group(function() {
+    Route::post('', 'CommentController@store');
+
+    Route::get('{post}', 'CommentController@show');
+
+    Route::delete('{comment}', 'CommentController@destroy');
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/search', 'SearchController@search');
 
 Route::get('/logged', 'PageController@logged');

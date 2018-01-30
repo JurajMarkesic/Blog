@@ -20,7 +20,7 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request)                                 //returns all posts
     {
 
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
@@ -35,7 +35,7 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()                                                //renders view for creating a post
     {
         $categories = Category::all();
         $tags = Tag::all();
@@ -49,7 +49,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)                             //stores a post
     {
         $this->validate($request, [
             'title' => 'required|unique:posts',
@@ -86,7 +86,7 @@ class PostsController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post)                        //renders a view to show a post
     {
         event(new PageViewed($post));
 
@@ -99,7 +99,7 @@ class PostsController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post)                //renders a view to edit a post
     {
         $categories = Category::all();
         $tags = Tag::all();
@@ -116,7 +116,7 @@ class PostsController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post)        //updates a post
     {
         $this->validate($request, [
             'title' => 'required|unique:posts',
@@ -153,7 +153,7 @@ class PostsController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post)             //deletes a post
     {
         try {
             $post->delete();
@@ -164,14 +164,14 @@ class PostsController extends Controller
         return response("Post deleted!", 200);
     }
 
-    public function popular()
+    public function popular()                   //returns posts with the most views
     {
         $posts = Post::orderBy('views', 'desc')->take(5)->get();
 
         return response()->json(['posts' => $posts]);
     }
 
-    public function recent()
+    public function recent()                    //returns most recently created posts
     {
         $posts = Post::orderBy('created_at', 'desc')->take(5)->get();
 

@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index()                                         //returns all categories
     {
         $categories = Category::all();
 
         return response()->json(['categories' => $categories]);
     }
 
-    public function show(Category $category)
+    public function show(Category $category)                         //returns all posts for a specific category
     {
         $posts = $category->posts()->get();
 
@@ -22,7 +22,7 @@ class CategoryController extends Controller
         return view('Categories.category', ['posts' => $posts]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request)                        //creates a new category
     {
         $this->validate($request, [
             'title' => 'required|unique:categories'
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     }
 
 
-    public function destroy(Category $category)
+    public function destroy(Category $category)                   //deletes a category
     {
         try {
             $category->delete();

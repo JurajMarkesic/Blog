@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function index()
+    public function index()                  //returns all tags
     {
         $tags = Tag::all();
 
@@ -16,7 +16,7 @@ class TagController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request)         //stores a new tag
     {
         $this->validate($request, [
             'name' => 'required|unique:tags'
@@ -33,7 +33,7 @@ class TagController extends Controller
         return response("Tag stored.", 200);
     }
 
-    public function attach(Request $request)
+    public function attach(Request $request)                //adds a tag to a post
     {
         $tagId = $request->input('tag');
         $postId = $request->input('post');
@@ -45,7 +45,7 @@ class TagController extends Controller
         return response("Tag attached.", 200);
     }
 
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag)                       //deletes a tag
     {
         try {
             $tag->delete();

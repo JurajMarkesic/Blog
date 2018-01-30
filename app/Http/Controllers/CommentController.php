@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(Request $request)                             //stores a comment
     {
         $this->validate($request, [
             'username' => 'required|max:30',
@@ -32,14 +32,14 @@ class CommentController extends Controller
         return response("Comment stored.", 200);
     }
 
-    public function show(Post $post)
+    public function show(Post $post)                                 //shows all comments for a specific post
     {
         $comments = $post->comments;
 
         return $comments;
     }
 
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment)                       //deletes a comment
     {
         try {
             $comment->delete();
