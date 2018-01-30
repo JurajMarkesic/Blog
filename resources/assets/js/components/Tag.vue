@@ -21,13 +21,9 @@
             removeTag() {
                 axios.delete(this.url +  '/delete')
                     .then((response) => {
-                        eventBus.$emit('tag-deleted');
+                        eventBus.$emit('tag-deleted');   //event listened for on Tags.vue
                     })
             }
         }
     }
 </script>
-
-<style>
-
-</style>

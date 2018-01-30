@@ -2,6 +2,7 @@
     <div id="postWrap">
         <h2><a :href="url">{{ post.title}}</a></h2>
         <p id="bod" v-html="post.body"></p>
+
         <div class="row">
             <a :href="'/posts/' + post.id" class="col-6 offset-3 col-md-4 offset-md-5">
                 <button class="btn bg-dark text-white">Read the post</button>
@@ -15,17 +16,11 @@
         props: [
             'post'
         ],
-        data() {
-            return {
-
-            }
-        },
         computed: {
             url() {
                 return "/posts/" + this.post.id;
             }
         }
-
     }
 </script>
 
@@ -45,5 +40,4 @@
     h2 a {
         color: #000033;
     }
-
 </style>

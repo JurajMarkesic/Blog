@@ -40,25 +40,19 @@
             addTag() {
                 axios.post('/tags/store', {
                     'name' : this.newTag
-                }).then((response) => {
+                }).then(() => {
                     this.fetchTags();
                 }).catch((error) => {
-                    console.log(error.response.data.errors);
                     this.error = error.response.data.errors.name[0];
                 })
             },
             clearErrors() {
                 this.error = '';
             }
-
         },
         created() {
             this.fetchTags();
-            eventBus.$on('tag-deleted', this.fetchTags);
+            eventBus.$on('tag-deleted', this.fetchTags);  //event from Tag.vue
         }
     }
 </script>
-
-<style>
-
-</style>

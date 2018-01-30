@@ -20,14 +20,10 @@
         methods: {
             removeCat() {
                 axios.delete(this.url + '/delete')
-                    .then((response) => {
-                        eventBus.$emit('cat-deleted');
+                    .then(() => {
+                        eventBus.$emit('cat-deleted');  //event listened for on Categories.vue
                     })
             }
         }
     }
 </script>
-
-<style>
-
-</style>

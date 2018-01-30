@@ -5,26 +5,28 @@
             <input type="text" name="title" id="title" class="form-control" v-model="title" @keyup="clearErrors">
             <span class="text-muted">{{ errors.title }}</span><br>
         </div>
+
+        <!--vueTinymce wysiwyg editor-->
         <vue-tinymce :data="body" v-model="body" id="bod" @change="clearErrors"></vue-tinymce>
         <span class="text-muted">{{ errors.body }}</span><br>
 
         <label for="category">Category:</label>
         <select name="category" id="category" v-model="category" class="form-control" @change="clearErrors">
-            <option v-for="cat in parsedCategories" :value="cat.id">{{cat.title}}</option>
+            <option v-for="cat in categories" :value="cat.id">{{cat.title}}</option>
         </select><span class="text-muted">{{ errors.category }}</span><br><br>
 
         <label for="tags">Add Tags:</label><br>
-        <v-select label="name" :options="parsedTags" id="tags" v-model="tagsSelected"  multiple @change="clearErrors">
-        </v-select>
+        <!--imported select component-->
+        <v-select label="name" :options="tags" id="tags" v-model="tagsSelected"  multiple @change="clearErrors"></v-select>
         <br>
+
         <button class="btn btn-success" @click="editPost">Done</button>
         <button class="btn btn-danger" @click="deletePost">Delete</button>
     </div>
 </template>
 
 <script>
-    import vueTinymce from '../app.js'
-
+    import vueTinymce from '../app.js';
 
     export default {
         props: [
@@ -32,10 +34,11 @@
         ],
         data() {
           return {
-              title: '',
-              body: '',
+              title: this.post.title,
+              body: this.post.body,
+              category: this.post.category,
               tag: '',
-              tagsSelected: [],
+              tagsSelected: this.tagsselected,
               errors: {
                   title: '',
                   body: '',
@@ -43,28 +46,10 @@
               }
           }
         },
-        created() {
-            this.title = this.parsedPost.title;
-            this.body = this.parsedPost.body;
-            this.category = this.parsedPost.category;
-            this.tagsSelected = this.parsedTagsSelected;
-        },
         computed: {
-            parsedPost() {
-                return JSON.parse(this.post);
-            },
-            parsedCategories() {
-                return JSON.parse(this.categories);
-            },
             url() {
-                return "/posts/" + this.parsedPost.id;
+                return "/posts/" + this.post.id;
             },
-            parsedTags() {
-                return JSON.parse(this.tags);
-            },
-            parsedTagsSelected() {
-                return JSON.parse(this.tagsselected);
-            }
         },
         methods: {
             editPost() {
@@ -76,7 +61,7 @@
                     'tags': tagIds
                 }).then((response) => {
                     console.log(response.data);
-                    window.location.href = this.url;
+                    window.location.href = this.url;        //redirects to post's show method
                 }).catch((error) => {
                     console.log(error.response.data.errors);
                     if(error.response.data.errors.title) {
@@ -92,7 +77,7 @@
             deletePost() {
                 axios.delete(this.url)
                     .then(
-                        window.location.href = "/"
+                        window.location.href = "/"  //redirects to the landing page
                     );
             },
             removeTag(tagName) {

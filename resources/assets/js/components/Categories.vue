@@ -40,10 +40,9 @@
             addCat() {
                 axios.post('/categories/store', {
                     'title' : this.newCat
-                }).then((response) => {
+                }).then(() => {
                     this.fetchCategories();
                 }).catch((error) => {
-                    console.log(error.response.data.errors);
                     this.error = error.response.data.errors.title[0];
                 })
             },
@@ -54,11 +53,7 @@
         },
         created() {
             this.fetchCategories();
-            eventBus.$on('cat-deleted', this.fetchCategories);
+            eventBus.$on('cat-deleted', this.fetchCategories);  //event from Category.vue
         }
     }
 </script>
-
-<style>
-
-</style>

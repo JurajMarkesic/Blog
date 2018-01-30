@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h2>{{ parsedPost.title}}</h2>
-        <p class="form-text text-muted mb-5">Views: {{ parsedPost.views }}   <span class="ml-5">{{ date }}</span></p>
-        <div v-html="parsedPost.body" id="bod"></div>
+        <h2>{{ post.title}}</h2>
+        <p class="form-text text-muted mb-5">Views: {{ post.views }}  <span class="ml-5">{{ date }}</span></p>
+        <div v-html="post.body" id="bod"></div>
     </div>
 </template>
 
@@ -12,16 +12,10 @@
             'post'
         ],
         computed: {
-            parsedPost() {
-                return JSON.parse(this.post);
-            },
             date() {
-                let dateArray = this.parsedPost.created_at.split(" ");
+                let dateArray = this.post.created_at.split(" ");  //shows only the date and not the time
                 return dateArray[0];
             }
-        },
-        methods: {
-
         }
     }
 </script>

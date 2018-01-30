@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Posts:</h3>
-        <p v-for="post in parsedPosts" :post="post" :key="post.id">
+        <p v-for="post in posts" :key="post.id">
             <a :href="'/posts/' + post.id">{{ post.title }}</a>
         </p>
     </div>
@@ -12,19 +12,5 @@
         props: [
             'posts'
         ],
-        data() {
-            return {
-                post: ''
-            }
-        },
-        computed: {
-            parsedPosts() {
-                return JSON.parse(this.posts);
-            }
-        }
     }
 </script>
-
-<style>
-
-</style>
