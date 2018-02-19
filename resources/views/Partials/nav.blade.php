@@ -12,8 +12,8 @@
             <ul class="navbar-nav">
                 @include('Partials.search')
                 @if (Auth::guest())
-                    <li class="nav-item ml-3"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                    <li class="nav-item ml-3"><a href="{{ route('login') }}" class="nav-link" style="text-align:right">Login</a></li>
+                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link" style="text-align:right">Register</a></li>
                 @else
                     <li class="nav-item ml-3"><a href="/home" class="nav-link">Dashboard</a></li>
                     <li class="nav-item dropdown ml-3">

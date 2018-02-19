@@ -9994,3 +9994,7 @@ a.text-dark:focus {
   }
 }
 
+#app {
+  overflow: hidden;
+}
+
