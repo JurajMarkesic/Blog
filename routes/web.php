@@ -56,7 +56,7 @@ Route::prefix('/comments/')->group(function() {
     Route::delete('{comment}', 'CommentController@destroy');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::get('/search', 'SearchController@search');
 
