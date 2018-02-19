@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel Blog') }}</title>
 
+    <link rel="shortcut icon" type="image/png" href="lightbulb1.png"/>
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
