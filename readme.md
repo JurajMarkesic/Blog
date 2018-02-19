@@ -9,13 +9,13 @@
 -pagination<br>
 -tinyMCE wysiwyg editor and select2 select<br><br>
 
-To make it easier to demo, every registered user has access to all the admin functionality. 
+To make it easier to demo, every registered can add/edit/remove posts.
 
 <h3>Stack:</h3>
 -Laravel 5.5<br>
 -Vue 2<br>
 -MySQL<br>
 -Bootstrap 4 <br>
--MySQL<br><br>
+<br><br>
 
 Deployed to heroku and can be demo'd here: https://blog-laravel-1.herokuapp.com/
