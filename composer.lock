@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c069bbcf21bd0768fae830b8456fb2c5",
+    "content-hash": "97cf3d56dfd1547ba15c865ba990492f",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2850,6 +2850,58 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "yab/laravel-scout-mysql-driver",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/YABhq/laravel-scout-mysql-driver.git",
+                "reference": "3f9cf88098265d36e158c595b25e3aa4a99e106d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/YABhq/laravel-scout-mysql-driver/zipball/3f9cf88098265d36e158c595b25e3aa4a99e106d",
+                "reference": "3f9cf88098265d36e158c595b25e3aa4a99e106d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.3.*|5.4.*|5.5.*|5.6.*",
+                "laravel/scout": "^2.0|^3.0|^4.0",
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Yab\\MySQLScout\\Providers\\MySQLScoutServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yab\\MySQLScout\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Lantz",
+                    "email": "matt@yabhq.com"
+                },
+                {
+                    "name": "Damian Crisafulli",
+                    "email": "damian.crisafulli@troyweb.com"
+                }
+            ],
+            "description": "MySQL driver for Laravel Scout.",
+            "time": "2018-02-17T11:47:40+00:00"
         }
     ],
     "packages-dev": [

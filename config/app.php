@@ -169,6 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Yab\MySQLScout\Providers\MySQLScoutServiceProvider::class,
 
         /*
          * Application Service Providers...
